@@ -19,8 +19,8 @@ if [[ -n $(git diff --numstat) ]]; then
     prComment=${7:-$prTitle}
     token=${8:-$GITHUB_TOKEN}
 
-    git config user.email ${email}
-    git config user.name ${userName}
+    git config user.email "${email}"
+    git config user.name "${userName}"
     git checkout -b ${branchName}
     git add .
     git commit -m "${comment}"
