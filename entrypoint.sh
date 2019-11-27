@@ -25,7 +25,6 @@ if [[ -n $(git diff --numstat) ]]; then
     git add .
     git commit -m "${comment}"
     git remote set-url origin https://${userName}:${token}@github.com/${GITHUB_REPOSITORY}.git
-    git remote -v
     git push origin ${branchName}
     data='{"title":"'${prTitle}'","head":"'${branchName}'","base":"'${baseBranch}'","body":"'${prComment}'"}'
     curl -X POST -H "Authorization: token ${token}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
