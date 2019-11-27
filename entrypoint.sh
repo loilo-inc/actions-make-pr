@@ -24,7 +24,7 @@ if [[ -n $(git diff --numstat) ]]; then
     git checkout -b ${branchName}
     git add .
     git commit -m "${comment}"
-    git remote add origin https://${userName}:${token}@github.com${GITHUB_REPOSITORY}.git
+    git remote set-url origin https://${userName}:${token}@github.com${GITHUB_REPOSITORY}.git
     git remote -v
     git push origin ${branchName}
     data='{"title":"'${prTitle}'","head":"'${branchName}'","base":"'${baseBranch}'","body":"'${prComment}'"}'
