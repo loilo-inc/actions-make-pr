@@ -11,10 +11,10 @@ inputs:
     description: "base branch"
     required: true
     default: master
-  comment:
-    description: "commit comment"
   branch-name:
     description: "new branch name"
+  comment:
+    description: "commit comment"
   pr-title:
     description: "pull request title"
   pr-comment:
