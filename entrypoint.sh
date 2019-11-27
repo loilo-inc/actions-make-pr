@@ -17,6 +17,7 @@ if [[ -n $(git diff --numstat) ]]; then
     comment=${5:-"This commit has pushed by loilo-inc/actions-make-pr at $dateString"}
     prTitle=${6:-"pull request by loilo-inc/actions-make-pr $dateString"}
     prComment=${7:-$prTitle}
+    token=${8:-$GITHUB_TOKEN}
 
     git config user.email ${email}
     git config user.name ${userName}
@@ -25,7 +26,7 @@ if [[ -n $(git diff --numstat) ]]; then
     git commit -m "${comment}"
     git push origin ${branchName}
     data='{"title":"'${prTitle}'","head":"'${branchName}'","base":"'${baseBranch}'","body":"'${prComment}'"}'
-    curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
+    curl -X POST -H "Authorization: token ${token}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
 else
     echo "noop"
 fi
