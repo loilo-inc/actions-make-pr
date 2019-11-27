@@ -2,12 +2,12 @@
 
 if [[ -n $(git diff --numstat) ]]; then
     userName=$1
-    if [[ -n ${userName} ]]; then
+    if [[ -z ${userName} ]]; then
         echo "user-name is required input."
         exit 1
     fi
     email=$2
-    if [[ -n ${email} ]]; then
+    if [[ -z ${email} ]]; then
         echo "email is required input."
         exit 1
     fi
