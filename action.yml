@@ -26,7 +26,7 @@ runs:
     - ${{ inputs.user-name }}
     - ${{ inputs.email }}
     - ${{ inputs.base-branch }}
-    - ${{ inputs.comment }}
     - ${{ inputs.branch-name }}
+    - ${{ inputs.comment }}
     - ${{ inputs.pr-title }}
     - ${{ inputs.pr-comment }}

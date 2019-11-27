@@ -13,19 +13,19 @@ if [[ -n $(git diff --numstat) ]]; then
     fi
     baseBranch=${3:-"master"}
     dateString=$(date "+%Y%m%d%H%M%S")
-    branchName=${5:-"made-by-gha-$dateString"}
-    comment=${6:-"This commit has pushed by loilo-inc/actions-make-pr at $dateString"}
-    prTitle=${7:-"pull request by loilo-inc/actions-make-pr $dateString"}
-    prComment=${8:-$prTitle}
+    branchName=${4:-"made-by-gha-$dateString"}
+    comment=${5:-"This commit has pushed by loilo-inc/actions-make-pr at $dateString"}
+    prTitle=${6:-"pull request by loilo-inc/actions-make-pr $dateString"}
+    prComment=${7:-$prTitle}
 
     git config user.email ${email}
     git config user.name ${userName}
     git checkout -b ${branchName}
     git add .
-#    git commit -m ${comment}
-#    git push origin ${branchName}
-#    data='{"title":"'${prTitle}'","head":"'${branchName}'","base":"'${baseBranch}'","body":"'${prComment}'"}'
-#    curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
+    git commit -m ${comment}
+    git push origin ${branchName}
+    data='{"title":"'${prTitle}'","head":"'${branchName}'","base":"'${baseBranch}'","body":"'${prComment}'"}'
+    curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
 else
     echo "noop"
 fi
