@@ -1,0 +1,33 @@
+name: "commit-push-and-pr"
+description: "Create new branch, then commit, push and make PR"
+inputs:
+  user-name:
+    description: "github user name"
+    required: true
+  email:
+    description: "github user's email"
+    required: true
+  base-branch:
+    description: "base branch"
+    required: true
+    default: master
+  comment:
+    description: "commit comment"
+  branch-name:
+    description: "new branch name"
+  pr-title:
+    description: "pull request title"
+  pr-comment:
+    description: "pull request comment"
+runs:
+  using: 'docker'
+  image: Dockerfile
+  args:
+    - ${{ inputs.user-name }}
+    - ${{ inputs.email }}
+    - ${{ inputs.repository }}
+    - ${{ inputs.base-branch }}
+    - ${{ inputs.comment }}
+    - ${{ inputs.branch-name }}
+    - ${{ inputs.pr-title }}
+    - ${{ inputs.pr-comment }}
