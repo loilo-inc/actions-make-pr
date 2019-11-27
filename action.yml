@@ -25,7 +25,6 @@ runs:
   args:
     - ${{ inputs.user-name }}
     - ${{ inputs.email }}
-    - ${{ inputs.repository }}
     - ${{ inputs.base-branch }}
     - ${{ inputs.comment }}
     - ${{ inputs.branch-name }}
