@@ -25,6 +25,7 @@ if [[ -n $(git diff --numstat) ]]; then
     git commit -m ${comment}
     git push origin ${branchName}
     data='{"title":"'${prTitle}'","head":"'${branchName}'","base":"'${baseBranch}'","body":"'${prComment}'"}'
+    echo ${GITHUB_REPOSITORY}
     curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
 else
     echo "noop"
