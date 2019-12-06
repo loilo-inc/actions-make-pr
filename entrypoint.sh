@@ -18,7 +18,7 @@ if [[ -n $(git diff --numstat) ]]; then
     prTitle=${6:-"pull request by loilo-inc/actions-make-pr $dateString"}
     prComment=${7:-$prTitle}
     token=${8:-$GITHUB_TOKEN}
-    labels=$9
+    label=$9
 
     git config user.email "${email}"
     git config user.name "${userName}"
@@ -31,10 +31,10 @@ if [[ -n $(git diff --numstat) ]]; then
     response=$(curl -X POST -H "Authorization: token ${token}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls)
     issueNumber=$(echo "${response}" | jq -r ".number")
     echo "${issueNumber}"
-    if [[ -n ${labels} ]]; then
-      data='{"labels": ['${labels}']}'
+    if [[ -n ${label} ]]; then
+      data='{"label": ["'${label}'"]}'
       echo ${data}
-      curl -X POST -H "Authorization: token ${token}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${issueNumber}/labels
+      curl -X POST -H "Authorization: token ${token}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${issueNumber}/label
     fi
 else
     echo "noop"

@@ -21,7 +21,7 @@ inputs:
     description: "pull request comment"
   github-token:
     description: "GitHub Personal Access Token"
-  labels:
+  label:
     description: "Pull request's labels"
 runs:
   using: 'docker'
@@ -35,4 +35,4 @@ runs:
     - ${{ inputs.pr-title }}
     - ${{ inputs.pr-comment }}
     - ${{ inputs.github-token }}
-    - ${{ inputs.labels }}
+    - ${{ inputs.label }}
