@@ -32,6 +32,7 @@ if [[ -n $(git diff --numstat) ]]; then
     issueNumber=$(echo "${response}" | jq -r ".number")
     echo "${issueNumber}"
     if [[ -n ${label} ]]; then
+      data='{"labels":"'${label}'"}'
       curl -X POST -H "Authorization: token ${token}" -H "Content-Type:application/json" --data "$data" https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${issueNumber}/labels
     fi
 else
