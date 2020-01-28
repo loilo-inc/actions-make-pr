@@ -23,6 +23,8 @@ inputs:
     description: "GitHub Personal Access Token"
   label:
     description: "Pull request's labels"
+  auto-merge:
+    description: "set 1 if you want to merge automatically"
 runs:
   using: 'docker'
   image: Dockerfile
@@ -36,3 +38,4 @@ runs:
     - ${{ inputs.pr-comment }}
     - ${{ inputs.github-token }}
     - ${{ inputs.label }}
+    - ${{ inputs.auto-merge }}
